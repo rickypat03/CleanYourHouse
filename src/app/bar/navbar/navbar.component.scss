@@ -1,0 +1,99 @@
+/* ---------- Utilità comuni ---------- */
+.spacer { flex: 1 1 auto; }
+
+/* ---------- DESKTOP: toolbar in alto ---------- */
+.desktop-navbar {
+  /* layout */
+  height: 64px;                 /* 56px su mobile, 64px su desktop è comune */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+
+  /* colori (sovrascrive color="primary") */
+  background: linear-gradient(90deg, #1f2937, #111827) !important;
+  color: #f9fafb;
+
+  /* ombra/elevazione */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+
+  /* bottoni della toolbar */
+  button[mat-button]{
+    text-transform: none;
+    font-weight: 500;
+    opacity: .95;
+
+    &:hover { background: rgba(255,255,255,.06); }
+    &.active { background: rgba(255,255,255,.12); border-radius: 8px; }
+  }
+}
+
+/* ---------- MOBILE: contenitore sidenav + content ---------- */
+.mobile-navbar {
+  height: 100dvh; /* full viewport; 100vh se preferisci */
+
+  /* il pannello laterale vero e proprio */
+  mat-sidenav {
+    width: clamp(240px, 80vw, 300px); /* puoi cambiare larghezza */
+    background: #0f172a;              /* sfondo drawer */
+    color: #e5e7eb;                    /* testo drawer */
+    border-right: 1px solid rgba(255,255,255,.08);
+  }
+
+  /* area contenuto (a destra del drawer) */
+  mat-sidenav-content {
+    background: #0b1220; /* sfondo pagina in mobile */
+    color: #e5e7eb;
+    min-height: 100%;    /* evita “buchi” su schermi alti */
+  }
+
+  /* toolbar in alto dentro al content (mobile) */
+  mat-sidenav-content > mat-toolbar {
+    position: sticky; top: 0; z-index: 100;  /* resta appiccicata in alto */
+    height: 56px;
+    padding: 0 8px;
+    background: #111827 !important;
+    box-shadow: 0 1px 6px rgba(0,0,0,.3);
+
+    button[mat-icon-button] { margin-right: 8px; }
+    .mat-icon { font-size: 24px; width: 24px; height: 24px; }
+  }
+
+  /* lista di navigazione nel drawer */
+  mat-nav-list a[mat-list-item] {
+    border-radius: 10px;
+    margin: 4px 8px;
+    padding: 12px 14px;
+    font-weight: 500;
+
+    &:hover { background: rgba(255,255,255,.06); }
+    &.active { background: rgba(255,255,255,.12); }
+  }
+
+  /* backdrop (oscuramento) quando il sidenav è aperto */
+  .mat-drawer-backdrop.mat-drawer-shown {
+    background: rgba(0,0,0,.55);
+  }
+
+  /* dolcifica l’animazione del push del content */
+  .mat-drawer-content {
+    transition: margin 240ms cubic-bezier(.4,0,.2,1);
+  }
+}
+
+/* ---------- Contenuto delle pagine ---------- */
+.app-content {
+  padding: 16px;       /* cambia i margini interni delle tue pagine */
+}
+
+
+
+@media (max-width: 768px) {
+  .desktop-navbar,
+  .app-content[ng-reflect-ng-if="true"] {
+    display: none;
+  }
+  .mobile-navbar {
+    display: flex;
+  }
+}
