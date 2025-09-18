@@ -4,3 +4,21 @@ html, body { height: 100%; margin: 0; }
 app-root   { display: block; height: 100%; }
 mat-sidenav-container { height: 100%; width: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --bianco: #CEF2EF;
+  --verdino-1: #09E0C4;
+  --verdino-2: #1EB39F;
+  --verdino-3: #38857A;
+  --nero: #223331;
+}
+
+
+html[data-theme="dark"] {
+  --c-acqua-1: #c5e7e4;
+  --c-acqua-2: #07cdb3;
+  --c-acqua-3: #199f8e;
+  --c-acqua-4: #2f6f67;
+  --c-acqua-5: #0f1514;
+}
+

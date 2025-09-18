@@ -23,6 +23,7 @@ export interface SmartRectApi {
  * L’avatar è completamente opzionale e viene creato solo alla prima chiamata di setAvatar(url).
  */
 export async function createSmartRect(Konva: any, opts: SmartRectOptions): Promise<SmartRectApi> {
+
   const { x, y, w, h, fill, cornerRadius = 6 } = opts;
 
   const group = new Konva.Group({ x, y, draggable: true });
@@ -43,7 +44,9 @@ export async function createSmartRect(Konva: any, opts: SmartRectOptions): Promi
   let imageNode: any | null = null;
 
   const ensureAvatarGroup = () => {
+
     if (avatarGroup) return;
+
     const r = Math.min(body.width(), body.height()) * 0.2;
     avatarGroup = new Konva.Group({
       name: 'avatar',
@@ -51,10 +54,12 @@ export async function createSmartRect(Konva: any, opts: SmartRectOptions): Promi
       y: body.height() / 2,
       offsetX: r, offsetY: r,
     });
+
     avatarGroup.clipFunc((ctx: CanvasRenderingContext2D) => {
       ctx.beginPath();
       ctx.arc(r, r, r, 0, Math.PI * 2);
     });
+
     imageNode = new Konva.Image({
       x: 0, y: 0, width: r * 2, height: r * 2,
     });
@@ -63,11 +68,14 @@ export async function createSmartRect(Konva: any, opts: SmartRectOptions): Promi
   };
 
   const api: SmartRectApi = {
+
     group,
     body,
     hasAvatar: () => !!avatarGroup && !!imageNode && !!imageNode.image(),
     setSize: (newW: number, newH: number) => {
+
       body.size({ width: newW, height: newH });
+
       if (avatarGroup && imageNode) {
         const r = Math.min(newW, newH) * 0.2;
         avatarGroup.offset({ x: r, y: r });
@@ -76,6 +84,7 @@ export async function createSmartRect(Konva: any, opts: SmartRectOptions): Promi
       }
     },
     recenterAvatar: () => {
+
       if (!avatarGroup || !imageNode) return;
       const bw = body.width();
       const bh = body.height();
@@ -85,13 +94,14 @@ export async function createSmartRect(Konva: any, opts: SmartRectOptions): Promi
       avatarGroup.position({ x: bw / 2, y: bh / 2 });
     },
     setAvatar: async (url: string) => {
+
       ensureAvatarGroup();
       const img = await loadImage(url);
       imageNode!.image(img);
-      // opzionale: api.recenterAvatar(); // già scalato; ricentriamo per sicurezza
       api.recenterAvatar();
       group.draw();
     },
+
     removeAvatar: () => {
       if (!avatarGroup) return;
       avatarGroup.destroy();
@@ -106,6 +116,7 @@ export async function createSmartRect(Konva: any, opts: SmartRectOptions): Promi
 
 /* ------------ helpers locali ------------ */
 function loadImage(url: string): Promise<HTMLImageElement> {
+	
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';

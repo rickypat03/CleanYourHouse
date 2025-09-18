@@ -22,6 +22,7 @@ import { DrawingController } from '../../../utils/drawing.controller';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements AfterViewInit, OnDestroy {
+
   @ViewChild('stageHost', { static: true }) host!: ElementRef<HTMLDivElement>;
 
   public isBrowser: boolean;
@@ -46,6 +47,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   }
 
   async ngAfterViewInit(): Promise<void> {
+
     if (!this.isBrowser) return;
 
     const mod = await import('konva');
@@ -59,6 +61,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       width: w,
       height: h,
     });
+
     this.layer = new this.Konva.Layer();
     this.stage.add(this.layer);
 
@@ -75,7 +78,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
     // DragBound per nuove shape
     const applyDragBound = (group: any, body: any) => {
+
       group.dragBoundFunc((pos: { x: number; y: number }) => {
+
         let nx = snapTo(pos.x, 0, this.stage.width() - body.width(), this.SNAP);
         let ny = snapTo(pos.y, 0, this.stage.height() - body.height(), this.SNAP);
 
@@ -93,11 +98,13 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
     // Disegno (dblclick → drag → mouseup): NESSUNA immagine
     this.drawingCtl = new DrawingController({
+
       Konva: this.Konva,
       stage: this.stage,
       layer: this.layer,
       shapesRef: this.shapes,
       minSize: this.MIN_SIZE,
+
       onCommit: async (x, y, w2, h2) => {
         const api = await createSmartRect(this.Konva, { x, y, w: w2, h: h2, fill: '#60a5fa' });
         applyDragBound(api.group, api.body);
@@ -130,6 +137,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   /* ---------------- helpers ---------------- */
 
   private attachTransformerTo(target: any | null) {
+
     if (!target) {
       this.transformer.nodes([]);
       this.layer.draw();
@@ -139,7 +147,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
     // Consolidamento post-resize
     target.off('transformend.resize');
+
     target.on('transformend.resize', () => {
+
       const body = target.findOne('.body') as any;
       const w = body.width() * target.scaleX();
       const h = body.height() * target.scaleY();
@@ -167,6 +177,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
     fill: string,
     applyDragBound: (group: any, body: any) => void
   ) {
+
     const api = await createSmartRect(this.Konva, { x, y, w, h, fill });
     applyDragBound(api.group, api.body);
     this.shapes.push(api.group);
@@ -174,20 +185,28 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   }
 
   private async ensureHostSize(): Promise<{ w: number; h: number }> {
+
     const ensure = () => {
       const r = this.host.nativeElement.getBoundingClientRect();
       return { w: Math.floor(r.width), h: Math.floor(r.height || 520) };
     };
+
     let { w, h } = ensure();
+
     if (w && h) return { w, h };
+
     await new Promise<void>((resolve) => {
+
       const raf = () => {
+
         ({ w, h } = ensure());
         if (w && h) return resolve();
         requestAnimationFrame(raf);
       };
+
       requestAnimationFrame(raf);
     });
+
     return { w, h };
   }
 }

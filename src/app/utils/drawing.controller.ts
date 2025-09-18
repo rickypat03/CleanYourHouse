@@ -9,6 +9,7 @@ export interface DrawingControllerDeps {
 }
 
 export class DrawingController {
+
   private drawing = false;
   private draftGroup?: any;
   private startPos?: { x: number; y: number };
@@ -16,6 +17,7 @@ export class DrawingController {
   constructor(private deps: DrawingControllerDeps) {}
 
   init() {
+
     const { stage } = this.deps;
 
     stage.on('dblclick.mapDrawing', () => {
@@ -23,6 +25,7 @@ export class DrawingController {
     });
 
     stage.on('mousedown.mapDrawing', async (e: any) => {
+
       if (!this.drawing) return;
       if (e.target !== stage) return;
 
@@ -36,9 +39,12 @@ export class DrawingController {
     });
 
     stage.on('mousemove.mapDrawing', () => {
+
       if (!this.drawing || !this.draftGroup || !this.startPos) return;
+
       const p = stage.getPointerPosition();
       if (!p) return;
+
       const x = Math.min(this.startPos.x, p.x);
       const y = Math.min(this.startPos.y, p.y);
       const w = Math.max(1, Math.abs(p.x - this.startPos.x));
@@ -48,6 +54,7 @@ export class DrawingController {
     });
 
     stage.on('mouseup.mapDrawing', async () => {
+
       if (!this.drawing || !this.draftGroup) return;
 
       const body = this.draftGroup.findOne('.body') as any;
@@ -83,6 +90,7 @@ export class DrawingController {
   /* ---------------- Draft ---------------- */
 
   private makeDraft(x: number, y: number, w: number, h: number) {
+
     const { Konva } = this.deps;
     const g = new Konva.Group({ x, y, listening: false });
 
@@ -98,9 +106,11 @@ export class DrawingController {
   }
 
   private updateDraft(x: number, y: number, w: number, h: number) {
+
     const g = this.draftGroup!;
     g.position({ x, y });
     const body = g.findOne('.body') as any;
+    
     body.size({ width: w, height: h });
   }
 

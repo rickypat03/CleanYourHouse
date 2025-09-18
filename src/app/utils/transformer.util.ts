@@ -17,8 +17,9 @@ export function makeTransformer(
   shapesRef: any[],           // array dei Group attuali (mutabile)
   opts: TransformerOptions = {}
 ) {
+
   const {
-    rotateEnabled = false,
+    rotateEnabled = true,
     minSize = 16
   } = opts;
 
@@ -31,6 +32,7 @@ export function makeTransformer(
   });
 
   transformer.boundBoxFunc((oldBox: any, newBox: any) => {
+    
     const node = transformer.nodes()[0];
     if (!node) return oldBox;
 
