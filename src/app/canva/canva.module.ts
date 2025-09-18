@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoginRoutingModule } from './login-routing.module';
+import { CanvaRoutingModule } from './canva-routing.module';
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    CanvaRoutingModule
   ]
 })
-export class LoginModule { }
+export class CanvaModule { }

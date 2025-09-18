@@ -7,8 +7,7 @@
 </mat-toolbar>
 
 <div class="app-content" *ngIf="!isMobile">
-  <!-- <router-outlet></router-outlet> -->
-  gesù
+  <router-outlet></router-outlet>
 </div>
 
 <mat-sidenav-container class="mobile-navbar" *ngIf="isMobile">
@@ -17,10 +16,10 @@
       <a mat-list-item routerLink="/" (click)="sidenav.close()">
         <span matListItemTitle class="drawer-text">Home</span>
       </a>
-      <a mat-list-item routerLink="/about" (click)="sidenav.close()">
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">
         <span matListItemTitle class="drawer-text">About</span>
       </a>
-      <a mat-list-item routerLink="/contact" (click)="sidenav.close()">
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">
         <span matListItemTitle class="drawer-text">Contact</span>
       </a>
     </mat-nav-list>
@@ -35,8 +34,7 @@
     </mat-toolbar>
 
     <div class="app-content">
-      <!-- <router-outlet></router-outlet> -->
-      miao
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
