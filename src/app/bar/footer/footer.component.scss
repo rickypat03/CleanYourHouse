@@ -1,4 +1,5 @@
 .footer {
-    background: linear-gradient(270deg, var(--verdino-3), var(--nero));
+    background: linear-gradient(270deg, var(--verdino-3), var(--nero)) !important;
     color: var(--bianco);
+  box-shadow: 0 -2px 8px var(--nero);
 }
