@@ -6,19 +6,27 @@ mat-sidenav-container { height: 100%; width: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
+  /* Base */
   --bianco: #CEF2EF;
   --verdino-1: #09E0C4;
   --verdino-2: #1EB39F;
   --verdino-3: #38857A;
-  --nero: #223331;
+  --nero: #2f645d;
+  --nero-rgb: rgb(47, 100, 93);
+
+  /* Medi tra i verdino */
+  /* tra --verdino-3 (#38857A) e --verdino-2 (#1EB39F) */
+  --verdino-3-2: #2B9C8C;
+  --verdino-3-2-rgb: rgb(43, 156, 140);
+
+  /* tra --verdino-2 (#1EB39F) e --verdino-1 (#09E0C4) */
+  --verdino-2-1: #13C9B1;
+  --verdino-2-1-rgb: rgb(19, 201, 177);
+
+  /* tra --verdino-3 (#38857A) e --verdino-1 (#09E0C4) */
+  --verdino-3-1: #20B29F;
+  --verdino-3-1-rgb: rgb(32, 178, 159);
 }
 
-
-html[data-theme="dark"] {
-  --c-acqua-1: #c5e7e4;
-  --c-acqua-2: #07cdb3;
-  --c-acqua-3: #199f8e;
-  --c-acqua-4: #2f6f67;
-  --c-acqua-5: #0f1514;
-}
-
+/* ---------- Utilità comuni ---------- */
+.spacer { flex: 1 1 auto; }

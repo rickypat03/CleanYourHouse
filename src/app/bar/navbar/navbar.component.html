@@ -1,5 +1,5 @@
 <mat-toolbar class="desktop-navbar" *ngIf="!isMobile">
-  <span>La mia App</span>
+  <span>Chorely</span>
   <span class="spacer"></span>
   <button mat-button routerLink="/">Home</button>
   <button mat-button routerLink="/about">About</button>
@@ -11,7 +11,7 @@
 </div>
 
 <mat-sidenav-container class="mobile-navbar" *ngIf="isMobile">
-  <mat-sidenav #sidenav mode="push" opened="false">
+  <mat-sidenav #sidenav mode="push" opened="false" [autoFocus]="false">
     <mat-nav-list>
       <a mat-list-item routerLink="/" (click)="sidenav.close()">
         <span matListItemTitle class="drawer-text">Home</span>
@@ -30,7 +30,7 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>La mia App</span>
+      <span>Chorely</span>
     </mat-toolbar>
 
     <div class="app-content">

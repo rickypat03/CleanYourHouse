@@ -1,5 +1,3 @@
-/* ---------- Utilità comuni ---------- */
-.spacer { flex: 1 1 auto; }
 
 /* ---------- DESKTOP: toolbar in alto ---------- */
 .desktop-navbar {
@@ -8,18 +6,18 @@
   align-items: center;
   gap: 8px;
   padding: 0 12px;
-  background: linear-gradient(90deg, #1f2937, #111827) !important;
-  color: #e5e7eb !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+  background: linear-gradient(270deg, var(--verdino-3), var(--nero)) !important;
+  color: var(--bianco) !important;
+  box-shadow: 0 2px 8px var(--nero);
 
   button[mat-button]{
-    color: #e5e7eb;
+    color: var(--bianco);
     font-size: 18px;
     text-transform: none;
     font-weight: 500;
     opacity: .95;
-    &:hover { background: rgba(255,255,255,.06); }
-    &.active { background: rgba(255,255,255,.12); border-radius: 8px; }
+    &:hover { background: var(--verdino-2);  }
+    &.active { background: var(--verdino-2); }
   }
 }
 
@@ -30,14 +28,14 @@
 
   /* pannello laterale */
   mat-sidenav {
-    background: #0f172a;
-    color: #e5e7eb;
-    border-right: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(220deg, var(--verdino-3), var(--nero));
+    color: var(--bianco);
+    border-right: 1px solid rgba(34, 51, 49,.08);
     border-radius: 0;
   }
 
   /* testo degli item (funziona perché .drawer-text è nel tuo template) */
-  .drawer-text { color: #e5e7eb; }
+  .drawer-text { color: var(--bianco); }
 
   /* area contenuto a destra */
   mat-sidenav-content {
@@ -49,25 +47,27 @@
 
   /* toolbar mobile */
   mat-sidenav-content > mat-toolbar {
+    
     font-size: 20px; font-weight: 500;
-    color:#e5e7eb;
+    color: var(--bianco);
     position: sticky; top: 0; z-index: 100;
     height: 56px; padding: 0 8px;
-    background: #111827 !important;
-    box-shadow: 0 1px 6px rgba(0,0,0,.3);
+    background: linear-gradient(270deg, var(--verdino-3), var(--nero)) !important;
+    box-shadow: 0 1px 6px rgba(47, 100, 93,.3);
 
     button[mat-icon-button] { margin-right: 8px; }
-    mat-icon { font-size: 24px; width: 24px; height: 24px; color:#e5e7eb; }
+    mat-icon { font-size: 24px; width: 24px; height: 24px; color:var(--bianco); }
   }
 
   /* hover/active sugli anchor (background) */
   mat-nav-list a[mat-list-item]{
 
-    &:hover  { background: rgba(255,255,255,.06); }
-    &.active { background: rgba(255,255,255,.12); }
+    &:hover  {
+      background-color: var(--verdino-2);
+    }
+    &.active { background: var(--verdino-2); }
   }
 
-  .mat-drawer-backdrop.mat-drawer-shown { background: rgba(0,0,0,.55); }
   .mat-drawer-content { transition: margin 240ms cubic-bezier(.4,0,.2,1); }
 }
 
